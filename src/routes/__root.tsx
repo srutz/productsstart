@@ -60,6 +60,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body className="w-screen h-screen bg-background text-foreground font-sans flex flex-col">
 				<Menubar></Menubar>
 				<div className="grow overflow-y-auto flex flex-col">{children}</div>
+				<div className="hidden">
+					{Array.from({ length: 7 }).map((_, i) => (
+						<a href={"/products/page/" + (i + 1)} key={i}>
+							Warmup Link {i + 1}
+						</a>
+					))}
+				</div>
+
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",

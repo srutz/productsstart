@@ -12,7 +12,7 @@ export function ProductsGrid({ page }: { page: number }) {
 	};
 	const totalPages = Math.max(1, Math.ceil(productsResponse.total / PAGE_SIZE));
 	return (
-		<div className="grow flex flex-col gap-4 overflow-y-auto">
+		<div className="pt-4 grow flex flex-col gap-4 overflow-y-auto">
 			<div className="grow flex flex-wrap justify-center gap-4 overflow-y-auto">
 				{productsResponse.products.map((product) => (
 					<button
