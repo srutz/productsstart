@@ -6,9 +6,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { useEffect, useEffectEvent } from "react";
 import { Menubar } from "#/components/Menubar";
-import { useWarmupProducts } from "#/hooks/useWarmupProducts";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -40,9 +38,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		],
 	}),
 	shellComponent: RootDocument,
+	notFoundComponent: () => <div>Not Found</div>,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	/*
 	const warumup = useWarmupProducts();
 	const warumupEffect = useEffectEvent(() => {
 		warumup(1, 10);
@@ -50,6 +50,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
 		warumupEffect();
 	}, []);
+  */
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
