@@ -57,6 +57,29 @@ const config = defineConfig({
 		viteReact(),
 		babel({ presets: [reactCompilerPreset()] }),
 	],
+	build: {
+		// Sourcemaps: standardmäßig deaktiviert (kein Größen-Overhead im Build)
+		sourcemap: false,
+		//   true     => .map-Dateien neben dem Bundle (für externe Tools)
+		//   'inline' => Base64-codiert direkt im Bundle (bequem, aber größer)
+		//   'hidden' => .map-Datei vorhanden, aber kein //# sourceMappingURL-Kommentar
+
+		// Minification: esbuild ist der Default - schnell und gut
+		minify: "oxc",
+		//   'esbuild' => Standard: sehr schnell, leicht schlechtere Kompression
+		//   'terser'  => langsamer, aber höhere Kompressionsrate (~5-10% kleiner)
+		//   false     => kein Minify (nur für Debugging/Analyse sinnvoll)
+
+		// CSS-Minification: seit Vite 4.4 separat steuerbar
+		cssMinify: true,
+		//   true           => verwendet denselben Minifier wie `minify` (esbuild)
+		//   false          => CSS bleibt unminifiziert
+		//   'lightningcss' => alternatives CSS-Tool, schneller und moderner als esbuild
+		//   'esbuild'      => explizit esbuild für CSS
+
+		// Chunk-Größen-Warnung: Warnung ab 500 KB (Default)
+		chunkSizeWarningLimit: 50,
+	},
 });
 
 export default config;

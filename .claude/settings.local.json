@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(grep -nA 5 \"createIPXH3App\\\\|createIPXH3Handler\" /home/sr/work/productsstart/node_modules/ipx/dist/shared/ipx.CXJeaylD.mjs)",
+      "Bash(npm uninstall *)"
+    ]
+  }
+}

@@ -10,7 +10,7 @@ export function ProductPanel({ product }: { product: Product }) {
 	const discountedPrice = product.price * (1 - product.discountPercentage / 100);
 
 	return (
-		<div className="my-8 mx-4 bg-white rounded-2xl shadow-2xl overflow-y-auto">
+		<div className="my-2 mx-4 bg-white rounded-2xl shadow-2xl overflow-y-auto">
 			{/* Product Images Section */}
 			<div className="grid md:grid-cols-2 gap-2">
 				{/* Main Image */}
