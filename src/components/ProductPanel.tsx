@@ -1,5 +1,5 @@
+import type { Product } from "#/hooks/types";
 import { cn } from "../lib/utils";
-import type { Product } from "../types";
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
 	style: "currency",

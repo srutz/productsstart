@@ -9,16 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RecipesRouteImport } from './routes/recipes'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ImprintRouteImport } from './routes/imprint'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as RecipeRecipeIdRouteImport } from './routes/recipe.$recipeId'
 import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
+import { Route as RecipesPageChar123PageChar125RouteImport } from './routes/recipes.page.{-$page}'
 import { Route as ProductsPageChar123PageChar125RouteImport } from './routes/products.page.{-$page}'
 
+const RecipesRoute = RecipesRouteImport.update({
+  id: '/recipes',
+  path: '/recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImprintRoute = ImprintRouteImport.update({
+  id: '/imprint',
+  path: '/imprint',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -31,16 +46,32 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecipesIndexRoute = RecipesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RecipesRoute,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ProductsRoute,
+} as any)
+const RecipeRecipeIdRoute = RecipeRecipeIdRouteImport.update({
+  id: '/recipe/$recipeId',
+  path: '/recipe/$recipeId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProductProductIdRoute = ProductProductIdRouteImport.update({
   id: '/product/$productId',
   path: '/product/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecipesPageChar123PageChar125Route =
+  RecipesPageChar123PageChar125RouteImport.update({
+    id: '/page/{-$page}',
+    path: '/page/{-$page}',
+    getParentRoute: () => RecipesRoute,
+  } as any)
 const ProductsPageChar123PageChar125Route =
   ProductsPageChar123PageChar125RouteImport.update({
     id: '/page/{-$page}',
@@ -51,67 +82,112 @@ const ProductsPageChar123PageChar125Route =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/imprint': typeof ImprintRoute
   '/products': typeof ProductsRouteWithChildren
+  '/recipes': typeof RecipesRouteWithChildren
   '/product/$productId': typeof ProductProductIdRoute
+  '/recipe/$recipeId': typeof RecipeRecipeIdRoute
   '/products/': typeof ProductsIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
   '/products/page/{-$page}': typeof ProductsPageChar123PageChar125Route
+  '/recipes/page/{-$page}': typeof RecipesPageChar123PageChar125Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/imprint': typeof ImprintRoute
   '/product/$productId': typeof ProductProductIdRoute
+  '/recipe/$recipeId': typeof RecipeRecipeIdRoute
   '/products': typeof ProductsIndexRoute
+  '/recipes': typeof RecipesIndexRoute
   '/products/page/{-$page}': typeof ProductsPageChar123PageChar125Route
+  '/recipes/page/{-$page}': typeof RecipesPageChar123PageChar125Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/imprint': typeof ImprintRoute
   '/products': typeof ProductsRouteWithChildren
+  '/recipes': typeof RecipesRouteWithChildren
   '/product/$productId': typeof ProductProductIdRoute
+  '/recipe/$recipeId': typeof RecipeRecipeIdRoute
   '/products/': typeof ProductsIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
   '/products/page/{-$page}': typeof ProductsPageChar123PageChar125Route
+  '/recipes/page/{-$page}': typeof RecipesPageChar123PageChar125Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/imprint'
     | '/products'
+    | '/recipes'
     | '/product/$productId'
+    | '/recipe/$recipeId'
     | '/products/'
+    | '/recipes/'
     | '/products/page/{-$page}'
+    | '/recipes/page/{-$page}'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/imprint'
     | '/product/$productId'
+    | '/recipe/$recipeId'
     | '/products'
+    | '/recipes'
     | '/products/page/{-$page}'
+    | '/recipes/page/{-$page}'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/imprint'
     | '/products'
+    | '/recipes'
     | '/product/$productId'
+    | '/recipe/$recipeId'
     | '/products/'
+    | '/recipes/'
     | '/products/page/{-$page}'
+    | '/recipes/page/{-$page}'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ImprintRoute: typeof ImprintRoute
   ProductsRoute: typeof ProductsRouteWithChildren
+  RecipesRoute: typeof RecipesRouteWithChildren
   ProductProductIdRoute: typeof ProductProductIdRoute
+  RecipeRecipeIdRoute: typeof RecipeRecipeIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/recipes': {
+      id: '/recipes'
+      path: '/recipes'
+      fullPath: '/recipes'
+      preLoaderRoute: typeof RecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products': {
       id: '/products'
       path: '/products'
       fullPath: '/products'
       preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/imprint': {
+      id: '/imprint'
+      path: '/imprint'
+      fullPath: '/imprint'
+      preLoaderRoute: typeof ImprintRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -128,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recipes/': {
+      id: '/recipes/'
+      path: '/'
+      fullPath: '/recipes/'
+      preLoaderRoute: typeof RecipesIndexRouteImport
+      parentRoute: typeof RecipesRoute
+    }
     '/products/': {
       id: '/products/'
       path: '/'
@@ -135,12 +218,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof ProductsRoute
     }
+    '/recipe/$recipeId': {
+      id: '/recipe/$recipeId'
+      path: '/recipe/$recipeId'
+      fullPath: '/recipe/$recipeId'
+      preLoaderRoute: typeof RecipeRecipeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$productId': {
       id: '/product/$productId'
       path: '/product/$productId'
       fullPath: '/product/$productId'
       preLoaderRoute: typeof ProductProductIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/recipes/page/{-$page}': {
+      id: '/recipes/page/{-$page}'
+      path: '/page/{-$page}'
+      fullPath: '/recipes/page/{-$page}'
+      preLoaderRoute: typeof RecipesPageChar123PageChar125RouteImport
+      parentRoute: typeof RecipesRoute
     }
     '/products/page/{-$page}': {
       id: '/products/page/{-$page}'
@@ -166,11 +263,27 @@ const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
   ProductsRouteChildren,
 )
 
+interface RecipesRouteChildren {
+  RecipesIndexRoute: typeof RecipesIndexRoute
+  RecipesPageChar123PageChar125Route: typeof RecipesPageChar123PageChar125Route
+}
+
+const RecipesRouteChildren: RecipesRouteChildren = {
+  RecipesIndexRoute: RecipesIndexRoute,
+  RecipesPageChar123PageChar125Route: RecipesPageChar123PageChar125Route,
+}
+
+const RecipesRouteWithChildren =
+  RecipesRoute._addFileChildren(RecipesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ImprintRoute: ImprintRoute,
   ProductsRoute: ProductsRouteWithChildren,
+  RecipesRoute: RecipesRouteWithChildren,
   ProductProductIdRoute: ProductProductIdRoute,
+  RecipeRecipeIdRoute: RecipeRecipeIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

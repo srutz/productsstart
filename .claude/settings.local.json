@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm install *)",
       "Bash(grep -nA 5 \"createIPXH3App\\\\|createIPXH3Handler\" /home/sr/work/productsstart/node_modules/ipx/dist/shared/ipx.CXJeaylD.mjs)",
-      "Bash(npm uninstall *)"
+      "Bash(npm uninstall *)",
+      "Bash(npx tsc *)",
+      "Bash(timeout 15 npx vite dev --port 3456)"
     ]
   }
 }

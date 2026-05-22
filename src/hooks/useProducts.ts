@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import type { ProductsRequest } from "./types";
 
 export const PAGE_SIZE = 30;
